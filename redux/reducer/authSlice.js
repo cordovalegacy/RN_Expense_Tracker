@@ -3,12 +3,10 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialStateValue = {
     id: null,
     name: "",
-    expense: {
-        amount: null
-    },
-    income: {
-        amount: null
-    }
+    email: "",
+    firstName: "",
+    lastName: "",
+    isAuthenticated: false
 }
 
 const authSlice = createSlice({

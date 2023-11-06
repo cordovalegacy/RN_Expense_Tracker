@@ -2,14 +2,13 @@
 // !Packages
 import { SafeAreaView, View, Text } from "react-native"
 
+// !Styles
 import { overview } from "../styles/overview"
 
 export default function Overview() {
     return (
         <SafeAreaView style={overview.screen}>
-            <View style={overview.titleBackground}>
-                <Text style={overview.title}>Budget Overview</Text>
-            </View>
+            <Title titleBackground={overview.titleBackground} title={overview.title}>Budget Overview</Title>
             <View style={overview.main}>
                 <View style={[overview.screen, overview.mainBackground]}>
                     <Text style={overview.mainTitle}>Income</Text>

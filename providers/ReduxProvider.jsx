@@ -20,7 +20,8 @@ const ReduxProvider = ({ children }) => {
             auth: authReducer,
             transaction: transactionReducer
         },
-        middleware: getDefaultMiddleware => getDefaultMiddleware().concat(authSlice.middleware, transactionSlice.middleware),
+        middleware: getDefaultMiddleware =>
+            getDefaultMiddleware().concat(authSlice.middleware, transactionSlice.middleware),
 
         devTools: false
     })
