@@ -30,7 +30,6 @@ export default function App() {
         barStyle={{backgroundColor: "#0097a7", borderTopWidth: 2, borderTopColor: "black"}}
         activeColor='black'
         inactiveColor= "#212121"
-        labeled={true}
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color }) => {
               let iconName
