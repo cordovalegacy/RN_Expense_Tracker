@@ -28,7 +28,7 @@ public class UserController {
         UserModel user = userService.loginUser(userLoginRequest.getEmail(), userLoginRequest.getPassword());
         if(user != null) {
 //            String token = //generate JWT
-            return ResponseEntity.ok(new UserModel(user.getId(), user.getEmail(), user.token));
+            return ResponseEntity.ok(new UserModel(user.getId(), user.getEmail(), user.token, user.getFirstName(), user.getLastName()));
         }else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password, please try again.");
         }

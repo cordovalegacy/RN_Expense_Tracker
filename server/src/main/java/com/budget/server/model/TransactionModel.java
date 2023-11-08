@@ -1,4 +1,5 @@
 package com.budget.server.model;
+import com.budget.server.service.UserService;
 import jakarta.persistence.*;
 import java.util.Date;
 
@@ -12,9 +13,22 @@ public class TransactionModel {
 
     private String type; //income or bill
 
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private Double amount;
 
     private Date dueDate;
+
+    @Transient
+    private UserService userService;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -52,7 +66,10 @@ public class TransactionModel {
         return user;
     }
 
-    public void setUser(UserModel user) {
+    public UserModel setUser(UserModel user) {
         this.user = user;
+        UserModel loggedInUser = userService.loginUser(user.getEmail(), user.getPassword());
+        System.out.println(loggedInUser);
+        return loggedInUser;
     }
 }

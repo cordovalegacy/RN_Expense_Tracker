@@ -12,7 +12,6 @@ public class UserService {
     private UserRepository userRepository;
 
     public UserModel registerUser(UserModel user){
-        //registration logic
         return userRepository.save(user);
     }
 

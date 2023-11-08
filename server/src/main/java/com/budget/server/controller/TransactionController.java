@@ -1,5 +1,4 @@
 package com.budget.server.controller;
-
 import com.budget.server.model.TransactionModel;
 import com.budget.server.model.UserModel;
 import com.budget.server.service.TransactionService;
@@ -23,11 +22,9 @@ public class TransactionController {
         return ResponseEntity.ok(transactions);
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<?> saveTransaction(@RequestBody TransactionModel transaction, UserModel id){
-        UserModel loggedInUser = id;
-        transaction.setUser(id);
-        TransactionModel savedTransaction = transactionService.saveTransaction(transaction);
+        TransactionModel savedTransaction = transactionService.saveTransaction(transaction, id);
         return ResponseEntity.ok(savedTransaction);
     }
 
