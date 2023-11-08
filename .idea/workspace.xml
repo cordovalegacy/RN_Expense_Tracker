@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="802e62df-7084-4db7-88d0-3d2aa83c444b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/adaptive-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/money-bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/babel.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Card.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Title.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/AppWrapper.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/providers/ReduxProvider.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/redux/api/auth/authApiSlice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/redux/api/auth/authConfig.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/redux/api/transaction/transactionApiSlice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/redux/api/transaction/transactionConfig.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/redux/reducer/authSlice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/redux/reducer/transactionSlice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/New.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Overview.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/ViewAll.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/new.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/overview.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/viewAll.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mockOverviews.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/mockTransactions.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2Xs1ISbuPxTq4eK4mKT9ljoe5io" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/cordo/OneDrive/Documents/~Languages/REACT_NATIVE/ExpenseTracker",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="802e62df-7084-4db7-88d0-3d2aa83c444b" name="Changes" comment="" />
+      <created>1699402892753</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699402892753</updated>
+      <workItem from="1699402893777" duration="140000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

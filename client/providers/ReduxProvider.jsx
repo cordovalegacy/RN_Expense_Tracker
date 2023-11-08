@@ -5,11 +5,11 @@ import { configureStore } from '@reduxjs/toolkit'
 
 // !Slices
 // *APIs
-import { authSlice } from '../redux/api/auth/authConfig'
-import { transactionSlice } from '../redux/api/transaction/transactionConfig'
+import { authSlice } from '../../redux/api/auth/authConfig'
+import { transactionSlice } from '../../redux/api/transaction/transactionConfig'
 // *Reducers
-import authReducer from '../redux/reducer/authSlice'
-import transactionReducer from '../redux/reducer/transactionSlice'
+import authReducer from '../../redux/reducer/authSlice'
+import transactionReducer from '../../redux/reducer/transactionSlice'
 
 const ReduxProvider = ({ children }) => {
 
