@@ -1,4 +1,10 @@
 package com.budget.server.repository;
 
-public class UserRepository {
+import com.budget.server.model.UserModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<UserModel, Long> {
+    Optional<UserModel> findByEmail(String email);
 }
