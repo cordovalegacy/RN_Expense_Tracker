@@ -8,7 +8,7 @@ export const overview = StyleSheet.create({
     },
     titleBackground: {
         padding: 10,
-        backgroundColor: "#0097a7",
+        backgroundColor: "#0d47a1",
         width: "100%",
         flexDirection: "row"
     },
@@ -21,14 +21,14 @@ export const overview = StyleSheet.create({
     },
     main: {
         flex: 1,
-        backgroundColor: '#0097a7',
+        backgroundColor: '#0d47a1',
         opacity: 0.8,
         alignItems: 'center',
         justifyContent: 'center',
     },
     mainBackground: {
         backgroundColor: "white",
-        width: "75%",
+        width: "90%",
         marginVertical: 15,
         padding: 10,
         borderRadius: 20,

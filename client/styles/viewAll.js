@@ -8,7 +8,7 @@ export const viewAll = StyleSheet.create({
     },
     titleBackground: {
         padding: 10,
-        backgroundColor: "#0097a7",
+        backgroundColor: "#0d47a1",
         width: "100%",
         flexDirection: "row"
     },
@@ -21,7 +21,7 @@ export const viewAll = StyleSheet.create({
     },
     main: {
         flex: 1,
-        backgroundColor: '#0097a7',
+        backgroundColor: '#2196f3',
         opacity: 0.8,
         paddingHorizontal: 5
     },

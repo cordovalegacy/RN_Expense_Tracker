@@ -5,11 +5,11 @@ import { StyleSheet } from 'react-native'
 export const app = StyleSheet.create({
     screen: {
         flex: 1,
-        backgroundColor: "black"
+        backgroundColor: "#0d47a1"
     },
     container: {
         flex: 1,
-        backgroundColor: '#ef5350',
+        backgroundColor: '#0d47a1',
         opacity: "60%",
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -22,7 +22,6 @@ export const app = StyleSheet.create({
         flex: 1,
         width: "100%",
         justifyContent: 'flex-start',
-        alignItems: "center",
-        paddingTop: 50,
+        alignItems: "center"
     },
 })

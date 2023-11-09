@@ -14,7 +14,10 @@ export default function Overview() {
 
     return (
         <SafeAreaView style={overview.screen}>
-            <Title titleBackground={overview.titleBackground} title={overview.title}>Budget Overview</Title>
+            <Title
+                titleBackground={overview.titleBackground}
+                title={overview.title}
+            >Budget Overview</Title>
             <View style={overview.main}>
                 <Card
                     header={"Income"}

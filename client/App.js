@@ -4,29 +4,26 @@ import { StatusBar } from 'expo-status-bar'
 import ReduxProvider from './providers/ReduxProvider'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { NavigationContainer } from '@react-navigation/native'
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 // !Components
-import New from './screens/New'
 import ViewAll from './screens/ViewAll'
 import Overview from './screens/Overview'
+import NewRecord from './screens/NewRecord'
 import AppWrapper from './constants/AppWrapper'
 
 // !Routing
-const Tab = createMaterialBottomTabNavigator()
+const BottomTab = createBottomTabNavigator()
 
 export default function App() {
 
   return (
     <>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <ReduxProvider>
         <NavigationContainer>
-          <Tab.Navigator
+          <BottomTab.Navigator
             initialRouteName='Overview'
-            barStyle={{ backgroundColor: "#0097a7", borderTopWidth: 2, borderTopColor: "black" }}
-            activeColor='black'
-            inactiveColor="#212121"
             screenOptions={({ route }) => ({
               tabBarIcon: ({ focused, color }) => {
                 let iconName
@@ -39,32 +36,45 @@ export default function App() {
                 } else if (route.name === 'New') {
                   iconName = focused ? 'add-circle' : 'add-circle-outline'
                 }
-                return <Ionicons name={iconName} size={30} color={color} style={{borderRadius: 15}}/>
-              }
+                return <Ionicons name={iconName} size={35} color={color} />
+              },
+              tabBarItemStyle: {
+                height: 100,
+                paddingBottom: 40,
+                paddingTop: 10,
+                borderTopWidth: 2,
+                borderTopColor: "gold"
+              },
+              headerShown: false,
+              tabBarActiveTintColor: "gold",
+              tabBarInactiveTintColor: "#ccc",
+              tabBarStyle: { height: 100 },
+              tabBarInactiveBackgroundColor: "#000025",
+              tabBarActiveBackgroundColor: "#000041"
             })}
           >
-            <Tab.Screen name='Overview' options={{ tabBarLabel: "Overview" }}>
+            <BottomTab.Screen name='Overview' options={{ tabBarLabel: "Overview" }}>
               {(props) => (
                 <AppWrapper>
                   <Overview {...props} />
                 </AppWrapper>
               )}
-            </Tab.Screen>
-            <Tab.Screen name='New' options={{ tabBarLabel: "New" }}>
+            </BottomTab.Screen>
+            <BottomTab.Screen name='New' options={{ tabBarLabel: "New Record" }}>
               {(props) => (
                 <AppWrapper>
-                  <New {...props} />
+                  <NewRecord {...props} />
                 </AppWrapper>
               )}
-            </Tab.Screen>
-            <Tab.Screen name='ViewAll' options={{ tabBarLabel: "View All" }}>
+            </BottomTab.Screen>
+            <BottomTab.Screen name='ViewAll' options={{ tabBarLabel: "View All" }}>
               {(props) => (
                 <AppWrapper>
                   <ViewAll {...props} />
                 </AppWrapper>
               )}
-            </Tab.Screen>
-          </Tab.Navigator>
+            </BottomTab.Screen>
+          </BottomTab.Navigator>
         </NavigationContainer>
       </ReduxProvider>
     </>
