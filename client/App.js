@@ -24,7 +24,6 @@ export default function App() {
         <NavigationContainer>
           <Tab.Navigator
             initialRouteName='Overview'
-            shifting={true}
             barStyle={{ backgroundColor: "#0097a7", borderTopWidth: 2, borderTopColor: "black" }}
             activeColor='black'
             inactiveColor="#212121"
@@ -40,7 +39,7 @@ export default function App() {
                 } else if (route.name === 'New') {
                   iconName = focused ? 'add-circle' : 'add-circle-outline'
                 }
-                return <Ionicons name={iconName} size={25} color={color} />
+                return <Ionicons name={iconName} size={30} color={color} style={{borderRadius: 15}}/>
               }
             })}
           >
