@@ -17,7 +17,12 @@ const TopTab = createMaterialTopTabNavigator()
 export default function NewRecord() {
 
     const TopTabView = () => (
-        <TopTab.Navigator>
+        <TopTab.Navigator screenOptions={{
+            tabBarContentContainerStyle: {backgroundColor: "#000041"},
+            tabBarActiveTintColor: "gold",
+            tabBarInactiveTintColor: "white",
+            tabBarItemStyle: {borderBottomWidth: 2, borderBottomColor: "gold"}
+        }}>
             <TopTab.Screen name='Income' component={Income} />
             <TopTab.Screen name='Expenses' component={Expenses} />
         </TopTab.Navigator>

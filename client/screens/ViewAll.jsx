@@ -21,7 +21,8 @@ export default function ViewAll() {
         style={[
           viewAll.main,
           {
-            justifyContent: "center",
+            marginTop: 10,
+            justifyContent: "flex-start",
             alignItems: "stretch",
             flex: 1.1
           }

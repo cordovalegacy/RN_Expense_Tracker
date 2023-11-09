@@ -1,5 +1,6 @@
 
 // !Packages
+import { Platform } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import ReduxProvider from './providers/ReduxProvider'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -40,15 +41,15 @@ export default function App() {
               },
               tabBarItemStyle: {
                 height: 100,
-                paddingBottom: 40,
-                paddingTop: 10,
+                paddingBottom: Platform.OS === "android" ? 35 : 40,
+                paddingTop: Platform.OS === "android" ? 5 : 10,
                 borderTopWidth: 2,
                 borderTopColor: "gold"
               },
               headerShown: false,
               tabBarActiveTintColor: "gold",
               tabBarInactiveTintColor: "#ccc",
-              tabBarStyle: { height: 100 },
+              tabBarStyle: Platform.OS === "android" ? { height: 75 } : {height: 100},
               tabBarInactiveBackgroundColor: "#000025",
               tabBarActiveBackgroundColor: "#000041"
             })}
