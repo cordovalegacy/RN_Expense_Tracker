@@ -1,5 +1,4 @@
 package com.budget.server.controller;
-
 import com.budget.server.model.UserModel;
 import com.budget.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,10 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserModel user){
+        if (!user.getPassword().equals(user.getConfirmPassword())) {
+            throw new RuntimeException("Passwords do not match");
+        }
+        user.setConfirmPassword(null);
         UserModel registeredUser = userService.registerUser(user);
         return ResponseEntity.ok(registeredUser);
     }
@@ -28,7 +31,7 @@ public class UserController {
         UserModel user = userService.loginUser(userLoginRequest.getEmail(), userLoginRequest.getPassword());
         if(user != null) {
 //            String token = //generate JWT
-            return ResponseEntity.ok(new UserModel(user.getId(), user.getEmail(), user.token, user.getFirstName(), user.getLastName()));
+            return ResponseEntity.ok(user);
         }else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password, please try again.");
         }
