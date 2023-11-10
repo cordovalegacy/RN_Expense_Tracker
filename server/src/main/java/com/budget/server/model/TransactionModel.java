@@ -1,7 +1,14 @@
 package com.budget.server.model;
 import com.budget.server.service.UserService;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
+
 
 @Entity
 @Table(name = "transactions")
@@ -13,19 +20,20 @@ public class TransactionModel {
 
     private String type; //income or bill
 
+    @NotBlank(message = "Name of record must not be blank")
+    @Size(min = 1, max = 50)
     private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     private Double amount;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
+
+    @Column(updatable=false)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date createdAt;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date updatedAt;
 
     @Transient
     private UserService userService;
@@ -36,6 +44,14 @@ public class TransactionModel {
 
     public Long getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
@@ -60,6 +76,15 @@ public class TransactionModel {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = new Date();
     }
 
     public UserModel getUser() {

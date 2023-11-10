@@ -1,5 +1,7 @@
 package com.budget.server.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="users")
@@ -10,12 +12,17 @@ public class UserModel {
     private Long id;
 
     @Column(unique = true)
+    @NotBlank(message = "Email cannot be blank")
     private String email;
 
+    @NotBlank(message = "Password cannot be blank")
+    @Size(min = 8, max = 35)
     private String password;
 
+    @NotBlank(message = "First Name cannot be blank")
     private String firstName;
 
+    @NotBlank(message = "Last Name cannot be blank")
     private String lastName;
 
     public UserModel() {
