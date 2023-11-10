@@ -6,17 +6,34 @@ import ReduxProvider from './providers/ReduxProvider'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 
 // !Components
+import Income from './screens/Income'
 import ViewAll from './screens/ViewAll'
 import Overview from './screens/Overview'
+import Expenses from './screens/Expenses'
 import NewRecord from './screens/NewRecord'
 import AppWrapper from './constants/AppWrapper'
 
 // !Routing
 const BottomTab = createBottomTabNavigator()
+const TopTab = createMaterialTopTabNavigator()
 
 export default function App() {
+
+  const TopTabView = () => (
+    <TopTab.Navigator screenOptions={{
+        tabBarContentContainerStyle: {backgroundColor: "#000041"},
+        tabBarLabelStyle: {fontWeight: "900"},
+        tabBarPressOpacity: 80,
+        tabBarActiveTintColor: "gold",
+        tabBarInactiveTintColor: "white"
+    }}>
+        <TopTab.Screen name='Income' component={Income} />
+        <TopTab.Screen name='Expenses' component={Expenses} />
+    </TopTab.Navigator>
+)
 
   return (
     <>
@@ -64,7 +81,7 @@ export default function App() {
             <BottomTab.Screen name='New' options={{ tabBarLabel: "New Record" }}>
               {(props) => (
                 <AppWrapper>
-                  <NewRecord {...props} />
+                  <NewRecord {...props} TopTabView={TopTabView}/>
                 </AppWrapper>
               )}
             </BottomTab.Screen>

@@ -1,32 +1,15 @@
 
 // !Packages
 import { SafeAreaView, View } from "react-native"
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 
 // !Components
-import Income from './Income'
-import Expenses from './Expenses'
+
 import Title from "../components/Title"
 
 // !Styles
 import { newRecord } from '../styles/newRecord'
 
-// !Routing
-const TopTab = createMaterialTopTabNavigator()
-
-export default function NewRecord() {
-
-    const TopTabView = () => (
-        <TopTab.Navigator screenOptions={{
-            tabBarContentContainerStyle: {backgroundColor: "#000041"},
-            tabBarActiveTintColor: "gold",
-            tabBarInactiveTintColor: "white",
-            tabBarItemStyle: {borderBottomWidth: 2, borderBottomColor: "gold"}
-        }}>
-            <TopTab.Screen name='Income' component={Income} />
-            <TopTab.Screen name='Expenses' component={Expenses} />
-        </TopTab.Navigator>
-    )
+export default function NewRecord({ TopTabView }) {
 
     return (
         <SafeAreaView style={newRecord.screen}>
