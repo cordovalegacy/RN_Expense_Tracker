@@ -42,6 +42,9 @@ public class UserModel {
     private Date createdAt;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
+
+    private String token;
+
 // !Define Schema
 
 // !Define Constructors
@@ -75,9 +78,6 @@ public class UserModel {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    @JsonIgnore
-    public String token;
 
     public Long getId() {
         return id;
@@ -114,6 +114,14 @@ public class UserModel {
     @PreUpdate
     protected void onUpdate(){
         this.updatedAt = new Date();
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
 }
