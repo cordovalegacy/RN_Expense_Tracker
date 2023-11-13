@@ -1,6 +1,7 @@
 
 // !Packages
-import { Pressable, Text, View } from 'react-native'
+import { useState, useEffect } from 'react'
+import { Pressable, Text, View, Keyboard } from 'react-native'
 
 // !Styles
 import { logReg } from '../styles/logReg'
@@ -10,7 +11,8 @@ import AppWrapper from '../constants/AppWrapper'
 import InputGroup from '../components/InputGroup'
 import RedirectButton from '../components/RedirectButton'
 
-export default function Login() {
+export default function Login({ isLoading, loginHandler }) {
+
     return (
         <AppWrapper>
             <View style={logReg.formContainer}>

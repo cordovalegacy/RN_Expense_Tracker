@@ -12,6 +12,7 @@ export default function InputGroup({ label, placeholder, value, onChange }) {
             <TextInput
                 style={newRecord.input}
                 placeholder={placeholder}
+                onChangeText={onChange}
             />
         </View>
     )

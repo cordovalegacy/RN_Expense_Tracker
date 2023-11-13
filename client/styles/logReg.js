@@ -22,6 +22,19 @@ export const logReg = StyleSheet.create({
         marginTop: "25%",
         gap: 5
     },
+    formContainerScroll: {
+        borderRadius: 20,
+        backgroundColor: '#0d47a1',
+        opacity: 0.9,
+        paddingVertical: 20,
+        elevation: 4,
+        shadowColor: "black",
+        borderRadius: 20,
+        width: "95%",
+        gap: 5,
+        flex: 0.6,
+        marginBottom: 50
+    },
     title: {
         color: "white",
         fontSize: 40,
