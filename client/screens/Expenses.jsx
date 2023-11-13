@@ -1,40 +1,21 @@
 
 // !Packages
+import { Pressable, Text, View } from "react-native"
+
+// !Styles
 import { newRecord } from "../styles/newRecord"
-import { Pressable, Text, TextInput, View } from "react-native"
+
+// !Components
+import InputGroup from "../components/InputGroup"
 
 export default function Expenses() {
     return (
         <View style={[newRecord.main, newRecord.mainBackground]}>
             <View style={newRecord.form}>
-                <View style={newRecord.inputGroup}>
-                    <Text style={newRecord.label}>Name: </Text>
-                    <TextInput
-                        style={newRecord.input}
-                        placeholder="Amazon"
-                    />
-                </View>
-                <View style={newRecord.inputGroup}>
-                    <Text style={newRecord.label}>Amount: </Text>
-                    <TextInput
-                        style={newRecord.input}
-                        placeholder="105"
-                    />
-                </View>
-                <View style={newRecord.inputGroup}>
-                    <Text style={newRecord.label}>Due Date: </Text>
-                    <TextInput
-                        style={newRecord.input}
-                        placeholder="mm/dd/yyyy"
-                    />
-                </View>
-                <View style={newRecord.inputGroup}>
-                    <Text style={newRecord.label}>Description: </Text>
-                    <TextInput
-                        style={newRecord.input}
-                        placeholder="Christmas Gift"
-                    />
-                </View>
+                <InputGroup label={"Name:"} placeholder={"Amazon"} />
+                <InputGroup label={"Amount:"} placeholder={"105"} />
+                <InputGroup label={"Due Date:"} placeholder={"mm/dd/yyyy"} />
+                <InputGroup label={"Description:"} placeholder={"Christmas Gift"} />
                 <View style={newRecord.inputGroup}>
                     <Pressable>
                         <View style={newRecord.button}>

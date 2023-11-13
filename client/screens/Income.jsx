@@ -1,43 +1,21 @@
 
 // !Packages
-import { Pressable, Text, TextInput, View } from "react-native"
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { Pressable, Text, View } from "react-native"
 
 // !Styles
 import { newRecord } from "../styles/newRecord"
+
+// !Components
+import InputGroup from "../components/InputGroup"
 
 export default function Income() {
     return (
         <View style={[newRecord.main, newRecord.mainBackground]}>
             <View style={newRecord.form}>
-                <View style={newRecord.inputGroup}>
-                    <Text style={newRecord.label}>Income Name: </Text>
-                    <TextInput
-                        style={newRecord.input}
-                        placeholder="Waste Management"
-                    />
-                </View>
-                <View style={newRecord.inputGroup}>
-                    <Text style={newRecord.label}>Amount: </Text>
-                    <TextInput
-                        style={newRecord.input}
-                        placeholder="105"
-                    />
-                </View>
-                <View style={newRecord.inputGroup}>
-                    <Text style={newRecord.label}>Pay Date: </Text>
-                    <TextInput
-                        style={newRecord.input}
-                        placeholder="mm/dd/yyyy"
-                    />
-                </View>
-                <View style={newRecord.inputGroup}>
-                    <Text style={newRecord.label}>Description: </Text>
-                    <TextInput
-                        style={newRecord.input}
-                        placeholder="John's Job"
-                    />
-                </View>
+                <InputGroup label={"Income Name:"} placeholder={"Waste Management"}/>
+                <InputGroup label={"Amount:"} placeholder={"105"}/>
+                <InputGroup label={"Pay Date:"} placeholder={"mm/dd/yyyy"}/>
+                <InputGroup label={"Description:"} placeholder={"John's Job"}/>
                 <View style={newRecord.inputGroup}>
                     <Pressable>
                         <View style={newRecord.button}>
