@@ -60,36 +60,42 @@ export default function Register({ isLoading, registrationHandler }) {
                 style={[
                     logReg.formContainerScroll,
                     isKeyboardVisible
-                        ? { marginTop: 10 }
+                        ? { marginVertical: 10 }
                         : { marginTop: 50 }
                 ]}>
+                {isLoading && <Text style={{ color: "white", marginBottom: -20 }}>...Loading</Text>}
                 {!isKeyboardVisible && <Text style={logReg.title}>Register</Text>}
                 <View style={[logReg.main, logReg.mainBackground]}>
-                    <View style={ logReg.form }>
+                    <View style={[logReg.form, { marginTop: -10 }]}>
                         <InputGroup
                             label={"First Name:"}
                             placeholder={"John"}
                             onChange={(text) => changeHandler("firstName", text)}
+                            secure={false}
                         />
                         <InputGroup
                             label={"Last Name:"}
                             placeholder={"Doe"}
                             onChange={(text) => changeHandler("lastName", text)}
+                            secure={false}
                         />
                         <InputGroup
                             label={"Email Address:"}
                             placeholder={"user123@gmail.com"}
                             onChange={(text) => changeHandler("email", text)}
+                            secure={false}
                         />
                         <InputGroup
                             label={"Password:"}
                             placeholder={"***********"}
                             onChange={(text) => changeHandler("password", text)}
+                            secure={true}
                         />
                         <InputGroup
                             label={"Confirm Password:"}
                             placeholder={"***********"}
                             onChange={(text) => changeHandler("confirmPassword", text)}
+                            secure={true}
                         />
                         <View style={logReg.inputGroup}>
                             <Pressable onPress={() => registrationHandler(registration)}>
@@ -103,7 +109,7 @@ export default function Register({ isLoading, registrationHandler }) {
                         redirectUrl={"Login"}
                         textStyles={logReg.noAccount}
                         viewStyles={logReg.noAccountContainer}
-                        pressableStyles={logReg.noAccountButton}>
+                        pressableStyles={[logReg.noAccountButton, isKeyboardVisible && {marginBottom: 50}]}>
                         Already have an account? Login!
                     </RedirectButton>
                 </View>

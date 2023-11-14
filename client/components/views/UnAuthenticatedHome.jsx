@@ -24,6 +24,7 @@ export default function UnAuthenticatedHome({ setIsLoggedIn }) {
             .unwrap()
             .then((res) => {
                 console.log("Response: ", res)
+                setIsLoggedIn(true)
             })
             .catch((err) => {
                 console.log("Error: ", err)
@@ -36,6 +37,7 @@ export default function UnAuthenticatedHome({ setIsLoggedIn }) {
             .unwrap()
             .then((res) => {
                 console.log("Response: ", res)
+                setIsLoggedIn(true)
             })
             .catch((err) => {
                 console.log("Error: ", err)

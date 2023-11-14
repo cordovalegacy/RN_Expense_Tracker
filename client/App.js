@@ -2,7 +2,6 @@
 // !Packages
 import { useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { KeyboardAvoidingView } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 
 // !Components
@@ -17,7 +16,6 @@ export default function App() {
   return (
     <ReduxProvider>
       <StatusBar style="light" />
-      <KeyboardAvoidingView style={{ flex: 1 }}>
         <NavigationContainer>
           {
             isLoggedIn
@@ -27,7 +25,6 @@ export default function App() {
               />
           }
         </NavigationContainer>
-      </KeyboardAvoidingView>
     </ReduxProvider>
   )
 }

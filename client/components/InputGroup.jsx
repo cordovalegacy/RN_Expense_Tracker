@@ -5,7 +5,7 @@ import { Text, TextInput, View } from "react-native"
 // !Styles
 import { newRecord } from "../styles/newRecord"
 
-export default function InputGroup({ label, placeholder, value, onChange }) {
+export default function InputGroup({ label, placeholder, value, onChange, secure }) {
     return (
         <View style={newRecord.inputGroup}>
             <Text style={newRecord.label}>{label} </Text>
@@ -13,6 +13,8 @@ export default function InputGroup({ label, placeholder, value, onChange }) {
                 style={newRecord.input}
                 placeholder={placeholder}
                 onChangeText={onChange}
+                secureTextEntry={secure}
+                value={value}
             />
         </View>
     )

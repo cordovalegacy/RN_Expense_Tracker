@@ -35,6 +35,19 @@ export const logReg = StyleSheet.create({
         flex: 0.6,
         marginBottom: 50
     },
+    loginContainerScroll: {
+        borderRadius: 20,
+        backgroundColor: '#0d47a1',
+        opacity: 0.9,
+        paddingBottom: 0,
+        elevation: 4,
+        shadowColor: "black",
+        borderRadius: 20,
+        width: "95%",
+        gap: 5,
+        flex: 0.4,
+        marginVertical: 25
+    },
     title: {
         color: "white",
         fontSize: 40,
@@ -43,7 +56,8 @@ export const logReg = StyleSheet.create({
     },
     main: {
         flex: 1,
-        backgroundColor: '#0d47a1'
+        backgroundColor: '#0d47a1',
+        gap: 10
     },
     mainBackground: {
         width: "100%"
@@ -53,7 +67,7 @@ export const logReg = StyleSheet.create({
         paddingVertical: 10,
         flex: 1,
         gap: 15,
-        marginTop: 25
+        marginTop: 50
     },
     inputGroup: {
         gap: 5

@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+import { VPN_IP } from '@env'
+
 const baseQuery = fetchBaseQuery({ 
-    baseUrl: `http://localhost:8080/api/users`,
+    baseUrl: `http://${VPN_IP}:8080/api/users`,
     credentials: 'include'
 })
 
