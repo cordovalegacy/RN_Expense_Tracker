@@ -28,8 +28,8 @@ export const overview = StyleSheet.create({
     },
     mainBackground: {
         backgroundColor: "white",
-        width: "90%",
-        marginVertical: 15,
+        width: "95%",
+        marginVertical: 3,
         padding: 10,
         borderRadius: 20,
         elevation: 4,
@@ -38,18 +38,20 @@ export const overview = StyleSheet.create({
         borderColor: "gray"
     },
     mainTitle: {
-        fontSize: 19,
+        fontSize: 25,
         fontStyle: "italic",
         textDecorationLine: "underline",
-        fontWeight:"700"
+        fontWeight:"700",
+        textAlign: "center"
     },
     mainContentContainer: {
         paddingHorizontal: 25,
-        paddingVertical: 15
+        paddingVertical: 5
     },
     mainContent: {
-        fontSize: 15,
-        fontWeight: "600"
+        fontSize: 20,
+        fontWeight: "600",
+        textAlign: "center"
     },
     positive: {
         color: "green",

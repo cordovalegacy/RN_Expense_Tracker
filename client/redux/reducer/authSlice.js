@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialStateValue = {
-    id: null,
-    name: "",
-    email: "",
-    firstName: "",
-    lastName: "",
+    value: {
+        id: null,
+        email: "",
+        firstName: "",
+        lastName: ""
+    },
     isAuthenticated: false
 }
 

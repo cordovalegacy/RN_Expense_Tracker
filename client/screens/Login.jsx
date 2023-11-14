@@ -19,7 +19,6 @@ export default function Login({ isLoading, loginHandler }) {
     })
 
     const changeHandler = (fieldName, value) => {
-        console.log(fieldName, value)
         setLogin((prevLogin) => ({
             ...prevLogin,
             [fieldName]: value,

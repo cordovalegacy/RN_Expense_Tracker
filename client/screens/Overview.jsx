@@ -1,6 +1,7 @@
 
 // !Packages
-import { SafeAreaView, View } from "react-native"
+import { SafeAreaView, View, Text } from "react-native"
+import { useSelector } from "react-redux"
 import { income, expenses, balance, incomeTotal, expenseTotal, grandTotal } from "../utils/mockOverviews"
 
 // !Styles
@@ -12,6 +13,8 @@ import Title from "../components/Title"
 
 export default function Overview() {
 
+    const loggedInUser = useSelector((state) => state.auth.value.value)
+
     return (
         <SafeAreaView style={overview.screen}>
             <Title
@@ -19,6 +22,20 @@ export default function Overview() {
                 title={overview.title}
             >Budget Overview</Title>
             <View style={overview.main}>
+                <Text style={{
+                    color: "white",
+                    fontSize: 25,
+                    fontWeight: "900",
+                    marginTop: 10
+                }}>Welcome,{" "}
+                    <Text
+                        style={{
+                            color: "gold",
+                            textDecorationLine: "underline"
+                        }}
+                    >{loggedInUser?.firstName}!
+                    </Text>
+                </Text>
                 <Card
                     header={"Income"}
                     transactions={income}

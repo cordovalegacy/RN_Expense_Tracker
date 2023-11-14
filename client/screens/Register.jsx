@@ -44,7 +44,6 @@ export default function Register({ isLoading, registrationHandler }) {
     })
 
     const changeHandler = (fieldName, value) => {
-        console.log(fieldName, value)
         setRegistration((prevRegistration) => ({
             ...prevRegistration,
             [fieldName]: value,

@@ -5,18 +5,21 @@ import {
     useRegisterMutation,
     useLoginMutation
 } from '../../redux/api/auth/authApiSlice'
+import { useDispatch } from 'react-redux'
 
 // !Components
 import Login from '../../screens/Login'
 import Register from '../../screens/Register'
+import { authAndLogin } from '../../redux/reducer/authSlice'
 
 // !Routing
 const Stack = createStackNavigator()
 
-export default function UnAuthenticatedHome({ setIsLoggedIn }) {
+export default function UnAuthenticatedHome() {
 
     const [login, { isLoading: isLoginLoading }] = useLoginMutation()
     const [register, { isLoading: isRegisterLoading }] = useRegisterMutation()
+    const dispatch = useDispatch()
 
     const loginHandler = ({ email, password }) => {
         const payload = { email, password }
@@ -24,7 +27,15 @@ export default function UnAuthenticatedHome({ setIsLoggedIn }) {
             .unwrap()
             .then((res) => {
                 console.log("Response: ", res)
-                setIsLoggedIn(true)
+                res.token && dispatch(authAndLogin({
+                    isAuthenticated: true,
+                    value: {
+                        id: res.id,
+                        firstName: res.firstName,
+                        lastName: res.lastName,
+                        email: res.email,
+                    }
+                }))
             })
             .catch((err) => {
                 console.log("Error: ", err)
@@ -37,7 +48,15 @@ export default function UnAuthenticatedHome({ setIsLoggedIn }) {
             .unwrap()
             .then((res) => {
                 console.log("Response: ", res)
-                setIsLoggedIn(true)
+                res.token && dispatch(authAndLogin({
+                    isAuthenticated: true,
+                    value: {
+                        id: res.id,
+                        firstName: res.firstName,
+                        lastName: res.lastName,
+                        email: res.email,
+                    }
+                }))
             })
             .catch((err) => {
                 console.log("Error: ", err)
