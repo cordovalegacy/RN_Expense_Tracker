@@ -26,13 +26,15 @@ public class TransactionModel {
 
     private Double amount;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String description;
+
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
     private Date dueDate;
 
     @Column(updatable=false)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern="MM/dd/yyyy")
     private Date createdAt;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern="MM/dd/yyyy")
     private Date updatedAt;
 
     @Transient
@@ -76,6 +78,14 @@ public class TransactionModel {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @PrePersist

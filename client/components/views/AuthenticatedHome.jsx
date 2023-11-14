@@ -3,34 +3,18 @@
 import { Platform } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 
 // !Components
-import Income from '../../screens/Income'
+import TopTabView from './TopTabView'
 import ViewAll from '../../screens/ViewAll'
-import Expenses from '../../screens/Expenses'
 import Overview from '../../screens/Overview'
 import NewRecord from '../../screens/NewRecord'
 import AppWrapper from '../../constants/AppWrapper'
 
 // !Routing
 const BottomTab = createBottomTabNavigator()
-const TopTab = createMaterialTopTabNavigator()
 
 export default function AuthenticatedHome() {
-
-    const TopTabView = () => (
-        <TopTab.Navigator screenOptions={{
-            tabBarContentContainerStyle: { backgroundColor: "#000041" },
-            tabBarLabelStyle: { fontWeight: "900" },
-            tabBarPressOpacity: 80,
-            tabBarActiveTintColor: "gold",
-            tabBarInactiveTintColor: "white"
-        }}>
-            <TopTab.Screen name='Income' component={Income} />
-            <TopTab.Screen name='Expenses' component={Expenses} />
-        </TopTab.Navigator>
-    )
 
     return (
         <BottomTab.Navigator

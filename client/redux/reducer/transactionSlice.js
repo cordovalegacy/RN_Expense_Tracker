@@ -8,7 +8,9 @@ const initialStateValue = {
     },
     income: {
         amount: null
-    }
+    },
+    dueDate: "",
+    description: ""
 }
 
 const transactionSlice = createSlice({
