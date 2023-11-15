@@ -2,7 +2,7 @@
 // !Packages
 import { SafeAreaView, View, Text } from "react-native"
 import { useSelector } from "react-redux"
-import { income, expenses, balance, incomeTotal, expenseTotal, grandTotal } from "../utils/mockOverviews"
+import { income, expenses, balance, incomeTotal, expenseTotal, grandTotal } from "../utils/data/mockOverviews"
 
 // !Styles
 import { overview } from "../styles/overview"

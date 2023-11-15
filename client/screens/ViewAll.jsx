@@ -1,7 +1,7 @@
 
 // !Packages
 import { Calendar } from 'react-native-calendars'
-import { mockTransactions } from '../utils/mockTransactions'
+import { mockTransactions } from '../utils/data/mockTransactions'
 import { SafeAreaView, Text, View, FlatList } from "react-native"
 
 // !Components

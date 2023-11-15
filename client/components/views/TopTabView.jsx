@@ -1,8 +1,9 @@
 
 // !Packages
 import { useDispatch, useSelector } from 'react-redux'
-import { useAddNewTransactionMutation } from '../../redux/api/transaction/transactionApiSlice'
+import { useNavigation } from "@react-navigation/native"
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import { useAddNewTransactionMutation } from '../../redux/api/transaction/transactionApiSlice'
 
 // !Components
 import Income from '../../screens/Income'
@@ -15,18 +16,16 @@ const TopTab = createMaterialTopTabNavigator()
 const TopTabView = () => {
     
     const dispatch = useDispatch()
+    const navigation = useNavigation()
     const loggedInUser = useSelector((state) => state.auth.value.value.id)
     const [newTransaction, { isLoading }] = useAddNewTransactionMutation()
-
-
-    console.log(loggedInUser)
 
     const transactionSubmitHandler = (payload) => {
         console.log("Top Tab View: ", loggedInUser)
         newTransaction(payload, loggedInUser)
             .unwrap()
             .then((res) => {
-                console.log("Response: ", res)
+                // console.log("Response: ", res)
                 dispatch(addNewTransaction(
                     res.type === "income"
                         ? {
@@ -48,6 +47,7 @@ const TopTabView = () => {
                             }
                         }
                 ))
+                navigation.navigate("ViewAll")
             })
             .catch((err) => {
                 console.log("Error: ", err)

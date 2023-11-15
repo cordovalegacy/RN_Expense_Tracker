@@ -2,6 +2,8 @@
 // !Packages
 import { useState } from "react"
 import { Pressable, Text, View } from "react-native"
+import { generateRefs } from "../utils/functions/generateRefs"
+import { changeHandler } from "../utils/functions/inputChangeHandler"
 
 // !Styles
 import { newRecord } from "../styles/newRecord"
@@ -20,24 +22,29 @@ export default function Expenses({ isLoading, transactionSubmitHandler, user }) 
         user: user
     })
 
-    const changeHandler = (fieldName, value) => {
-        setExpense((prevExpense) => ({
-            ...prevExpense,
-            [fieldName]: value
-        }))
+    const expenseRefs = generateRefs(expense)
+
+    const submitHandler = (expense) => {
+        Object.values(expenseRefs).forEach((ref) => {
+            if (ref && ref.current) {
+                ref.current.clear();
+            }
+        })
+        transactionSubmitHandler(expense)
     }
 
     return (
         <View style={[newRecord.main, newRecord.mainBackground]}>
             <View style={newRecord.form}>
-            {isLoading && <Text style={{ color: "white", marginBottom: -20 }}>...Loading</Text>}
+                {isLoading && <Text style={{ color: "white", marginBottom: -20 }}>...Loading</Text>}
                 <InputGroup
                     label={"Expense Name:"}
                     inputConfig={{
                         placeholder: "Waste Management",
                         secureTextEntry: false,
-                        onChangeText: (text) => changeHandler("name", text),
-                        maxLength: 30
+                        onChangeText: (text) => changeHandler("name", text, setExpense),
+                        maxLength: 30,
+                        ref: expenseRefs.nameInput
                     }}
                 />
                 <InputGroup
@@ -45,9 +52,10 @@ export default function Expenses({ isLoading, transactionSubmitHandler, user }) 
                     inputConfig={{
                         placeholder: "105",
                         secureTextEntry: false,
-                        onChangeText: (text) => changeHandler("amount", text),
+                        onChangeText: (text) => changeHandler("amount", text, setExpense),
                         maxLength: 30,
-                        keyboardType: 'decimal-pad'
+                        keyboardType: 'decimal-pad',
+                        ref: expenseRefs.amountInput
                     }}
                 />
                 <InputGroup
@@ -55,10 +63,10 @@ export default function Expenses({ isLoading, transactionSubmitHandler, user }) 
                     inputConfig={{
                         placeholder: "MM/DD/YYYY",
                         secureTextEntry: false,
-                        onChangeText: (text) => changeHandler("dueDate", text),
-                        value: new Date().getDate() + new Date().getDay() + new Date().getFullYear(),
+                        onChangeText: (text) => changeHandler("dueDate", text, setExpense),
                         numberOfLines: 1,
-                        keyboardType: 'decimal-pad'
+                        keyboardType: 'decimal-pad',
+                        ref: expenseRefs.dueDateInput
                     }}
                 />
                 <InputGroup
@@ -66,12 +74,13 @@ export default function Expenses({ isLoading, transactionSubmitHandler, user }) 
                     inputConfig={{
                         placeholder: "Christmas Gift",
                         secureTextEntry: false,
-                        onChangeText: (text) => changeHandler("description", text),
-                        maxLength: 60
+                        onChangeText: (text) => changeHandler("description", text, setExpense),
+                        maxLength: 60,
+                        ref: expenseRefs.descriptionInput
                     }}
                 />
                 <View style={newRecord.inputGroup}>
-                    <Pressable onPress={() => transactionSubmitHandler(expense)}>
+                    <Pressable onPress={() => submitHandler(expense)}>
                         <View style={newRecord.button}>
                             <Text style={newRecord.buttonText}>Add Expense</Text>
                         </View>
