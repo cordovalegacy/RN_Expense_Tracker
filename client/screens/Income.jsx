@@ -14,7 +14,7 @@ export default function Income({ isLoading, transactionSubmitHandler }) {
     const [income, setIncome] = useState({
         name: "",
         amount: "",
-        dueDate: "",
+        dueDate: new Date().getDate(),
         description: "",
         type: "income"
     })
@@ -29,30 +29,45 @@ export default function Income({ isLoading, transactionSubmitHandler }) {
     return (
         <View style={[newRecord.main, newRecord.mainBackground]}>
             <View style={newRecord.form}>
-            {isLoading && <Text style={{ color: "white", marginBottom: -20 }}>...Loading</Text>}
+                {isLoading && <Text style={{ color: "white", marginBottom: -20 }}>...Loading</Text>}
                 <InputGroup
                     label={"Income Name:"}
-                    placeholder={"Waste Management"}
-                    onChange={(text) => changeHandler("name", text)}
-                    secure={false}
+                    inputConfig={{
+                        placeholder: "Waste Management",
+                        secureTextEntry: false,
+                        onChangeText: (text) => changeHandler("name", text),
+                        maxLength: 30
+                    }}
                 />
                 <InputGroup
                     label={"Amount:"}
-                    placeholder={"105"}
-                    onChange={(text) => changeHandler("amount", text)}
-                    secure={false}
+                    inputConfig={{
+                        placeholder: "105",
+                        secureTextEntry: false,
+                        onChangeText: (text) => changeHandler("amount", text),
+                        maxLength: 30,
+                        keyboardType: 'decimal-pad'
+                    }}
                 />
                 <InputGroup
                     label={"Pay Date:"}
-                    placeholder={"mm/dd/yyyy"}
-                    onChange={(text) => changeHandler("dueDate", text)}
-                    secure={false}
+                    inputConfig={{
+                        placeholder: "MM/DD/YYYY",
+                        secureTextEntry: false,
+                        onChangeText: (text) => changeHandler("dueDate", text),
+                        value: new Date().getDate() + new Date().getDay() + new Date().getFullYear(),
+                        numberOfLines: 1,
+                        keyboardType: 'decimal-pad'
+                    }}
                 />
                 <InputGroup
                     label={"Description:"}
-                    placeholder={"John's Job"}
-                    onChange={(text) => changeHandler("description", text)}
-                    secure={false}
+                    inputConfig={{
+                        placeholder: "My job",
+                        secureTextEntry: false,
+                        onChangeText: (text) => changeHandler("description", text),
+                        maxLength: 60
+                    }}
                 />
                 <View style={newRecord.inputGroup}>
                     <Pressable onPress={() => transactionSubmitHandler(income)}>
