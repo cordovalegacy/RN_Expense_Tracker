@@ -9,10 +9,10 @@ const transactionApiSlice = transactionSlice.injectEndpoints({
             })
         }),
         addNewTransaction: builder.mutation({
-            query: ({ name, amount, dueDate, type, description }) => ({
+            query: (payload) => ({
                 url: '/save',
                 method: 'POST',
-                body: { name, amount, dueDate, type, description }
+                body: { ...payload }
             })
         }),
         editTransaction: builder.mutation({

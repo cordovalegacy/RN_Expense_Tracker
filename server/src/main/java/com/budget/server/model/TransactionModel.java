@@ -1,8 +1,5 @@
 package com.budget.server.model;
-import com.budget.server.service.UserService;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,6 +23,7 @@ public class TransactionModel {
 
     private Double amount;
 
+    @Size(max = 60)
     private String description;
 
     @DateTimeFormat(pattern = "MM/dd/yyyy")
@@ -36,9 +34,6 @@ public class TransactionModel {
     private Date createdAt;
     @DateTimeFormat(pattern="MM/dd/yyyy")
     private Date updatedAt;
-
-    @Transient
-    private UserService userService;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -103,8 +98,6 @@ public class TransactionModel {
 
     public UserModel setUser(UserModel user) {
         this.user = user;
-        UserModel loggedInUser = userService.loginUser(user.getEmail(), user.getPassword());
-        System.out.println(loggedInUser);
-        return loggedInUser;
+        return user;
     }
 }

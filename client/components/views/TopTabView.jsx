@@ -1,6 +1,6 @@
 
 // !Packages
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useAddNewTransactionMutation } from '../../redux/api/transaction/transactionApiSlice'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 
@@ -13,12 +13,17 @@ import { addNewTransaction } from '../../redux/reducer/transactionSlice'
 const TopTab = createMaterialTopTabNavigator()
 
 const TopTabView = () => {
-
+    
     const dispatch = useDispatch()
+    const loggedInUser = useSelector((state) => state.auth.value.value.id)
     const [newTransaction, { isLoading }] = useAddNewTransactionMutation()
 
+
+    console.log(loggedInUser)
+
     const transactionSubmitHandler = (payload) => {
-        newTransaction(payload)
+        console.log("Top Tab View: ", loggedInUser)
+        newTransaction(payload, loggedInUser)
             .unwrap()
             .then((res) => {
                 console.log("Response: ", res)
@@ -49,7 +54,6 @@ const TopTabView = () => {
             })
     }
 
-
     return (
         <TopTab.Navigator screenOptions={{
             tabBarContentContainerStyle: { backgroundColor: "#000041" },
@@ -66,6 +70,7 @@ const TopTabView = () => {
                         {...props}
                         transactionSubmitHandler={transactionSubmitHandler}
                         isLoading={isLoading}
+                        user={loggedInUser}
                     />
                 )}
             </TopTab.Screen>
@@ -77,6 +82,7 @@ const TopTabView = () => {
                         {...props}
                         transactionSubmitHandler={transactionSubmitHandler}
                         isLoading={isLoading}
+                        user={loggedInUser}
                     />
                 )}
             </TopTab.Screen>

@@ -9,14 +9,15 @@ import { newRecord } from "../styles/newRecord"
 // !Components
 import InputGroup from "../components/InputGroup"
 
-export default function Expenses({ isLoading, transactionSubmitHandler }) {
+export default function Expenses({ isLoading, transactionSubmitHandler, user }) {
 
     const [expense, setExpense] = useState({
         name: "",
         amount: "",
         dueDate: "",
         description: "",
-        type: "bill"
+        type: "bill",
+        user: user
     })
 
     const changeHandler = (fieldName, value) => {
@@ -32,27 +33,42 @@ export default function Expenses({ isLoading, transactionSubmitHandler }) {
             {isLoading && <Text style={{ color: "white", marginBottom: -20 }}>...Loading</Text>}
                 <InputGroup
                     label={"Expense Name:"}
-                    placeholder={"Amazon"}
-                    onChange={(text) => changeHandler("name", text)}
-                    secure={false}
+                    inputConfig={{
+                        placeholder: "Waste Management",
+                        secureTextEntry: false,
+                        onChangeText: (text) => changeHandler("name", text),
+                        maxLength: 30
+                    }}
                 />
                 <InputGroup
                     label={"Amount:"}
-                    placeholder={"105"}
-                    onChange={(text) => changeHandler("amount", text)}
-                    secure={false}
+                    inputConfig={{
+                        placeholder: "105",
+                        secureTextEntry: false,
+                        onChangeText: (text) => changeHandler("amount", text),
+                        maxLength: 30,
+                        keyboardType: 'decimal-pad'
+                    }}
                 />
                 <InputGroup
                     label={"Due Date:"}
-                    placeholder={"mm/dd/yyyy"}
-                    onChange={(text) => changeHandler("dueDate", text)}
-                    secure={false}
+                    inputConfig={{
+                        placeholder: "MM/DD/YYYY",
+                        secureTextEntry: false,
+                        onChangeText: (text) => changeHandler("dueDate", text),
+                        value: new Date().getDate() + new Date().getDay() + new Date().getFullYear(),
+                        numberOfLines: 1,
+                        keyboardType: 'decimal-pad'
+                    }}
                 />
                 <InputGroup
                     label={"Description:"}
-                    placeholder={"Christmas Gift"}
-                    onChange={(text) => changeHandler("description", text)}
-                    secure={false}
+                    inputConfig={{
+                        placeholder: "Christmas Gift",
+                        secureTextEntry: false,
+                        onChangeText: (text) => changeHandler("description", text),
+                        maxLength: 60
+                    }}
                 />
                 <View style={newRecord.inputGroup}>
                     <Pressable onPress={() => transactionSubmitHandler(expense)}>

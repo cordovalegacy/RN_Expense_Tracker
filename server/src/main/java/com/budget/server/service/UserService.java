@@ -27,6 +27,17 @@ public class UserService {
         }
     }
 
+    //receiving userId
+    public UserModel setUserForTransaction(UserModel user) {
+        //grab the user if they exist and return to transaction service
+        Optional<UserModel> existingUser = userRepository.findById(user.getId());
+        if (existingUser.isPresent()) {
+            return (existingUser.get());
+        } else {
+            throw new RuntimeException("User with this id does not exist");
+        }
+    }
+
     public UserModel loginUser(String email, String password){
         Optional<UserModel> doesUserExist = userRepository.findByEmail(email);
         if(doesUserExist.isPresent()){

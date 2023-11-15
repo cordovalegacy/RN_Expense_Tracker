@@ -51,6 +51,10 @@ public class UserModel {
     public UserModel() {
 
     }
+
+    public UserModel(Long id) {
+        this.id = id;
+    }
     public UserModel(Long id, String email, String token, String firstName, String lastName, String password, String confirmPassword) {
         this.id = id;
         this.firstName = firstName;

@@ -9,14 +9,15 @@ import { newRecord } from "../styles/newRecord"
 // !Components
 import InputGroup from "../components/InputGroup"
 
-export default function Income({ isLoading, transactionSubmitHandler }) {
+export default function Income({ isLoading, transactionSubmitHandler, user }) {
 
     const [income, setIncome] = useState({
         name: "",
         amount: "",
         dueDate: new Date().getDate(),
         description: "",
-        type: "income"
+        type: "income",
+        user: user
     })
 
     const changeHandler = (fieldName, value) => {
@@ -42,7 +43,7 @@ export default function Income({ isLoading, transactionSubmitHandler }) {
                 <InputGroup
                     label={"Amount:"}
                     inputConfig={{
-                        placeholder: "105",
+                        placeholder: "2000",
                         secureTextEntry: false,
                         onChangeText: (text) => changeHandler("amount", text),
                         maxLength: 30,
@@ -55,7 +56,6 @@ export default function Income({ isLoading, transactionSubmitHandler }) {
                         placeholder: "MM/DD/YYYY",
                         secureTextEntry: false,
                         onChangeText: (text) => changeHandler("dueDate", text),
-                        value: new Date().getDate() + new Date().getDay() + new Date().getFullYear(),
                         numberOfLines: 1,
                         keyboardType: 'decimal-pad'
                     }}

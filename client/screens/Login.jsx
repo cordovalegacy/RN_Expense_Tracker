@@ -38,15 +38,19 @@ export default function Login({ isLoading, loginHandler }) {
                     <View style={[logReg.form, { marginTop: -10 }]}>
                         <InputGroup
                             label={"Email Address:"}
-                            placeholder={"user123@gmail.com"}
-                            onChange={(text) => changeHandler("email", text)}
-                            secure={false}
+                            inputConfig={{
+                                placeholder: "user123@gmail.com",
+                                secureTextEntry: false,
+                                onChangeText: (text) => changeHandler("email", text)
+                            }}
                         />
                         <InputGroup
                             label={"Password:"}
-                            placeholder={"***********"}
-                            onChange={(text) => changeHandler("password", text)}
-                            secure={true}
+                            inputConfig={{
+                                placeholder: "**********",
+                                secureTextEntry: true,
+                                onChangeText: (text) => changeHandler("password", text)
+                            }}
                         />
                         <View style={logReg.inputGroup}>
                             <Pressable onPress={() => loginHandler(login)}>

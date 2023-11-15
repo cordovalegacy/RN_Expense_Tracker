@@ -24,17 +24,25 @@ public class TransactionService {
         return transactionRepository.findByUserAndType(user, type);
     }
 
+    // receiving the transaction object and user id from controller
     public TransactionModel saveTransaction(TransactionModel transaction, UserModel user) {
-        // Perform user validation or any necessary logic here
-        // For example, validate the user's information, and then create and return a TransactionModel instance
-        System.out.println(transaction.getName());
+
+        //construct a new empty transaction instance
         TransactionModel newTransaction = new TransactionModel();
+
+        //grab the existing user information by the user id from database if exists
+        UserModel existingUser = userService.setUserForTransaction(user);
+
+        //use the transaction setters to construct this instance fully
         newTransaction.setType(transaction.getType());
         newTransaction.setName(transaction.getName());
         newTransaction.setAmount(transaction.getAmount());
         newTransaction.setDueDate(transaction.getDueDate());
-        newTransaction.setUser(transaction.getUser());
-        return newTransaction;
+        newTransaction.setDescription(transaction.getDescription());
+        newTransaction.setUser(existingUser);
+
+        //save a full constructed transaction instance to the db, and return result to controller
+        return transactionRepository.save(newTransaction);
     }
 
     public void deleteTransaction(Long id){

@@ -68,33 +68,43 @@ export default function Register({ isLoading, registrationHandler }) {
                     <View style={[logReg.form, { marginTop: -10 }]}>
                         <InputGroup
                             label={"First Name:"}
-                            placeholder={"John"}
-                            onChange={(text) => changeHandler("firstName", text)}
-                            secure={false}
+                            inputConfig={{
+                                placeholder: "John",
+                                secureTextEntry: false,
+                                onChangeText: (text) => changeHandler("firstName", text)
+                            }}
                         />
                         <InputGroup
                             label={"Last Name:"}
-                            placeholder={"Doe"}
-                            onChange={(text) => changeHandler("lastName", text)}
-                            secure={false}
+                            inputConfig={{
+                                placeholder: "Doe",
+                                secureTextEntry: false,
+                                onChangeText: (text) => changeHandler("lastName", text)
+                            }}
                         />
                         <InputGroup
                             label={"Email Address:"}
-                            placeholder={"user123@gmail.com"}
-                            onChange={(text) => changeHandler("email", text)}
-                            secure={false}
+                            inputConfig={{
+                                placeholder: "user123@gmail.com",
+                                secureTextEntry: false,
+                                onChangeText: (text) => changeHandler("email", text)
+                            }}
                         />
                         <InputGroup
                             label={"Password:"}
-                            placeholder={"***********"}
-                            onChange={(text) => changeHandler("password", text)}
-                            secure={true}
+                            inputConfig={{
+                                placeholder: "**********",
+                                secureTextEntry: true,
+                                onChangeText: (text) => changeHandler("password", text)
+                            }}
                         />
                         <InputGroup
                             label={"Confirm Password:"}
-                            placeholder={"***********"}
-                            onChange={(text) => changeHandler("confirmPassword", text)}
-                            secure={true}
+                            inputConfig={{
+                                placeholder: "**********",
+                                secureTextEntry: true,
+                                onChangeText: (text) => changeHandler("confirmPassword", text)
+                            }}
                         />
                         <View style={logReg.inputGroup}>
                             <Pressable onPress={() => registrationHandler(registration)}>
@@ -108,7 +118,7 @@ export default function Register({ isLoading, registrationHandler }) {
                         redirectUrl={"Login"}
                         textStyles={logReg.noAccount}
                         viewStyles={logReg.noAccountContainer}
-                        pressableStyles={[logReg.noAccountButton, isKeyboardVisible && {marginBottom: 50}]}>
+                        pressableStyles={[logReg.noAccountButton, isKeyboardVisible && { marginBottom: 50 }]}>
                         Already have an account? Login!
                     </RedirectButton>
                 </View>
