@@ -1,24 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialStateValue = {
-    id: null,
-    name: "",
-    expense: {
-        amount: null
-    },
-    income: {
-        amount: null
-    },
-    dueDate: "",
-    description: ""
-}
-
 const transactionSlice = createSlice({
     name: "transaction",
-    initialState: initialStateValue,
+    initialState: null,
     reducers: {
         addNewTransaction: (state, action) => {
+            console.log("transaction slice 16", action.payload)
             state = action.payload
+            console.log("transaction slice 16", action.payload)
         }
     }
 })

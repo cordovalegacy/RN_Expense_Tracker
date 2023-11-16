@@ -9,7 +9,7 @@ import Title from "../components/Title"
 // !Styles
 import { newRecord } from '../styles/newRecord'
 
-export default function NewRecord({ TopTabView }) {
+export default function NewRecord({ TopTabView, setTransaction }) {
 
     return (
         <SafeAreaView style={newRecord.screen}>
@@ -26,7 +26,7 @@ export default function NewRecord({ TopTabView }) {
                         flex: 1
                     }
                 ]}>
-                <TopTabView />
+                <TopTabView setTransaction={setTransaction}/>
             </View>
         </SafeAreaView>
     )

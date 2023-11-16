@@ -1,5 +1,6 @@
 
 // !Packages
+import { useSelector } from 'react-redux'
 import { Platform } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -10,11 +11,15 @@ import ViewAll from '../../screens/ViewAll'
 import Overview from '../../screens/Overview'
 import NewRecord from '../../screens/NewRecord'
 import AppWrapper from '../../constants/AppWrapper'
+import { useState } from 'react'
 
 // !Routing
 const BottomTab = createBottomTabNavigator()
 
 export default function AuthenticatedHome() {
+
+    const { id:loggedInUser } = useSelector((state) => state.auth.value.value)
+    const [transaction, setTransaction] = useState(null)
 
     return (
         <BottomTab.Navigator
@@ -46,7 +51,8 @@ export default function AuthenticatedHome() {
                 tabBarStyle: Platform.OS === "android" ? { height: 75 } : { height: 100 },
                 tabBarInactiveBackgroundColor: "#000025",
                 tabBarActiveBackgroundColor: "#000041"
-            })}
+            })
+            }
         >
             <BottomTab.Screen name='Overview' options={{ tabBarLabel: "Overview" }}>
                 {(props) => (
@@ -58,17 +64,25 @@ export default function AuthenticatedHome() {
             <BottomTab.Screen name='New' options={{ tabBarLabel: "New Record" }}>
                 {(props) => (
                     <AppWrapper>
-                        <NewRecord {...props} TopTabView={TopTabView} />
+                        <NewRecord
+                            {...props}
+                            TopTabView={TopTabView}
+                            setTransaction={setTransaction}
+                        />
                     </AppWrapper>
                 )}
             </BottomTab.Screen>
             <BottomTab.Screen name='ViewAll' options={{ tabBarLabel: "View All" }}>
                 {(props) => (
                     <AppWrapper>
-                        <ViewAll {...props} />
+                        <ViewAll
+                            {...props}
+                            transaction={transaction}
+                            loggedInUser={loggedInUser}
+                        />
                     </AppWrapper>
                 )}
             </BottomTab.Screen>
-        </BottomTab.Navigator>
+        </BottomTab.Navigator >
     )
 }

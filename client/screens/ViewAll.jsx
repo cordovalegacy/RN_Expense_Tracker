@@ -1,11 +1,10 @@
 
 // !Packages
+import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { Calendar } from 'react-native-calendars'
-import { useSelector, useDispatch } from 'react-redux'
 import { cleanData } from '../utils/functions/cleanData'
-import { mockTransactions } from '../utils/data/mockTransactions'
-import { SafeAreaView, Text, View, FlatList, ScrollView } from "react-native"
+import { SafeAreaView, Text, View, ScrollView } from "react-native"
 import { useRetrieveAllUsersTransactionsMutation } from '../redux/api/transaction/transactionApiSlice'
 
 // !Components
@@ -14,10 +13,9 @@ import Title from '../components/Title'
 // !Styles
 import { viewAll } from "../styles/viewAll"
 
-export default function ViewAll() {
+export default function ViewAll({transaction, loggedInUser}) {
 
   const [retrieve, { isLoading }] = useRetrieveAllUsersTransactionsMutation()
-  const loggedInUser = useSelector((state) => state.auth.value.value.id)
 
   const [allTransactions, setAllTransactions] = useState({
     allIncomeRecords: [],
@@ -30,12 +28,17 @@ export default function ViewAll() {
     const getIncomeList = async () => {
       let result = await retrieve({ type: "income", id: loggedInUser })
       result = result.data
-      const cleanedData = cleanData(result)
-      // console.log("Cleaned Income: ", cleanedData[0])
+      let cleanedData = cleanData(result)
+      transaction && cleanedData.push(transaction)
+      console.log("Cleaned Income: ", cleanedData)
+      console.log("transaction: ", transaction)
       try {
         setAllTransactions((prevState) => ({
           ...prevState,
-          allIncomeRecords: [...prevState.allIncomeRecords, ...cleanedData]
+          allIncomeRecords: [
+            ...prevState.allIncomeRecords,
+            ...cleanedData
+          ]
         }))
       }
       catch (err) {
@@ -49,11 +52,13 @@ export default function ViewAll() {
       let result = await retrieve({ type: "bill", id: loggedInUser })
       result = result.data
       const cleanedData = cleanData(result)
-      // console.log("Cleaned Expenses: ", cleanedData[0])
       try {
         setAllTransactions((prevState) => ({
           ...prevState,
-          allExpenseRecords: [...prevState.allExpenseRecords, ...cleanedData]
+          allExpenseRecords: [
+            ...prevState.allExpenseRecords,
+            ...cleanedData
+          ]
         }))
       }
       catch (err) {
@@ -62,7 +67,7 @@ export default function ViewAll() {
     }
     getExpenseList()
 
-  }, [])
+  }, [loggedInUser])
 
   return (
     <SafeAreaView style={viewAll.screen}>
@@ -77,7 +82,7 @@ export default function ViewAll() {
             marginTop: 10,
             justifyContent: "flex-start",
             alignItems: "stretch",
-            flex: 1.1
+            flex: 1.05
           }
         ]}>
         <Calendar style={viewAll.calendar} theme={{
@@ -95,7 +100,7 @@ export default function ViewAll() {
             {
               justifyContent: "center",
               alignItems: "stretch",
-              flex: .9
+              flex: .95
             }]}>
           <View
             style={[
@@ -112,14 +117,14 @@ export default function ViewAll() {
           </View>
           <View>
             {allTransactions.allIncomeRecords.map((item) => (
-              <View style={viewAll.mainContentBackground} key={item.id}>
-                <Text style={viewAll.mainContent}>{item.name}</Text>
+              <View style={viewAll.mainContentBackground} key={item?.id}>
+                <Text style={viewAll.mainContent}>{item?.name}</Text>
                 <Text
                   style={[
                     viewAll.mainContent,
                     { color: "green" }
                   ]}>
-                  ${item.amount}
+                  ${item?.amount}
                 </Text>
               </View>
             ))}
@@ -139,14 +144,14 @@ export default function ViewAll() {
           </View>
           <View>
             {allTransactions.allExpenseRecords.map((item) => (
-              <View style={viewAll.mainContentBackground} key={item.id}>
-                <Text style={viewAll.mainContent}>{item.name}</Text>
+              <View style={viewAll.mainContentBackground} key={item?.id}>
+                <Text style={viewAll.mainContent}>{item?.name}</Text>
                 <Text
                   style={[
                     viewAll.mainContent,
                     { color: "red" }
                   ]}>
-                  ${item.amount}
+                  ${item?.amount}
                 </Text>
               </View>
             ))}
