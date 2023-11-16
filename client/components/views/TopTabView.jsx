@@ -2,13 +2,13 @@
 // !Packages
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigation } from "@react-navigation/native"
+import { addNewTransaction } from '../../redux/reducer/transactionSlice'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { useAddNewTransactionMutation } from '../../redux/api/transaction/transactionApiSlice'
 
 // !Components
 import Income from '../../screens/Income'
 import Expenses from '../../screens/Expenses'
-import { addNewTransaction } from '../../redux/reducer/transactionSlice'
 
 // !Routing
 const TopTab = createMaterialTopTabNavigator()
@@ -25,29 +25,27 @@ const TopTabView = () => {
         newTransaction(payload, loggedInUser)
             .unwrap()
             .then((res) => {
-                // console.log("Response: ", res)
-                dispatch(addNewTransaction(
-                    res.type === "income"
-                        ? {
-                            id: res.id,
-                            name: res.name,
-                            dueDate: res.dueDate,
-                            description: res.description,
-                            income: {
-                                amount: res.amount,
-                            }
-                        }
-                        : {
-                            id: res.id,
-                            name: res.name,
-                            dueDate: res.dueDate,
-                            description: res.description,
-                            expense: {
-                                amount: res.amount,
-                            }
-                        }
-                ))
-                navigation.navigate("ViewAll")
+                console.log("Response: ", res)
+                navigation.navigate(
+                    "ViewAll", 
+                    res.type === "income" 
+                    ? {
+                        id: res.id,
+                        name: res.name,
+                        dueDate: res.dueDate,
+                        description: res.description,
+                        amount: res.amount,
+                        type: res.type
+                    }
+                    :{
+                        id: res.id,
+                        name: res.name,
+                        dueDate: res.dueDate,
+                        description: res.description,
+                        amount: res.amount,
+                        type: "bill"
+                    }
+                    )
             })
             .catch((err) => {
                 console.log("Error: ", err)

@@ -27,7 +27,7 @@ export default function Expenses({ isLoading, transactionSubmitHandler, user }) 
     const submitHandler = (expense) => {
         Object.values(expenseRefs).forEach((ref) => {
             if (ref && ref.current) {
-                ref.current.clear();
+                ref.current.clear()
             }
         })
         transactionSubmitHandler(expense)

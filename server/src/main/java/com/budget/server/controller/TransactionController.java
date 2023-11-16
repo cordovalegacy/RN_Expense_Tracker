@@ -15,10 +15,9 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
-    @GetMapping("/{type}")
-    public ResponseEntity<?> getUserTransactions(@PathVariable String type, UserModel id){
-        UserModel loggedInUser = id;
-        List<TransactionModel> transactions = transactionService.getUserTransactions(loggedInUser, type);
+    @GetMapping("/{type}/{id}")
+    public ResponseEntity<?> getUserTransactions(@PathVariable String type, @PathVariable Long id){
+        List<TransactionModel> transactions = transactionService.getUserTransactions(type, id);
         return ResponseEntity.ok(transactions);
     }
 

@@ -19,8 +19,8 @@ public class TransactionService {
         this.userService = userService;
     }
 
-    public List<TransactionModel> getUserTransactions(UserModel user, String type){
-        //implement logic to retrieve transactions by user and type
+    public List<TransactionModel> getUserTransactions(String type, Long id){
+        UserModel user = new UserModel(id);
         return transactionRepository.findByUserAndType(user, type);
     }
 

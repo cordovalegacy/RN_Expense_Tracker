@@ -16,7 +16,7 @@ export default function Income({ isLoading, transactionSubmitHandler, user }) {
     const [income, setIncome] = useState({
         name: "",
         amount: "",
-        dueDate: new Date().getDate().toString(),
+        dueDate: "",
         description: "",
         type: "income",
         user: user
@@ -27,7 +27,7 @@ export default function Income({ isLoading, transactionSubmitHandler, user }) {
     const submitHandler = (income) => {
         Object.values(incomeRefs).forEach((ref) => {
             if (ref && ref.current) {
-                ref.current.clear();
+                ref.current.clear()
             }
         })
         transactionSubmitHandler(income)

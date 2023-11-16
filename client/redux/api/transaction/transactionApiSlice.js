@@ -3,8 +3,8 @@ import { transactionSlice } from "./transactionConfig"
 const transactionApiSlice = transactionSlice.injectEndpoints({
     endpoints: builder => ({
         retrieveAllUsersTransactions: builder.mutation({
-            query: () => ({
-                url: '/getAllUsersTransactions',
+            query: ({type, id}) => ({
+                url: `/${type}/${id}`,
                 method: 'GET'
             })
         }),
