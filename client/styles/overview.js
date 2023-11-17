@@ -30,18 +30,20 @@ export const overview = StyleSheet.create({
         backgroundColor: "white",
         width: "95%",
         marginVertical: 3,
-        padding: 10,
+        padding: 5,
         borderRadius: 20,
         elevation: 4,
         shadowColor: "black",
         borderWidth: 3,
-        borderColor: "gray"
+        borderColor: "gray",
+        justifyContent: "center",
+        alignItems: "center"
     },
     mainTitle: {
-        fontSize: 25,
+        fontSize: 35,
         fontStyle: "italic",
         textDecorationLine: "underline",
-        fontWeight:"700",
+        fontWeight: "700",
         textAlign: "center"
     },
     mainContentContainer: {
@@ -55,12 +57,16 @@ export const overview = StyleSheet.create({
     },
     positive: {
         color: "green",
-        fontWeight: "800",
-        fontSize: 20
+        fontSize: 20,
+        paddingTop: 10,
+        borderTopWidth: 2,
+        fontWeight: "900",
     },
     negative: {
         color: "red",
-        fontWeight: "800",
-        fontSize: 20
+        fontSize: 20,
+        paddingTop: 10,
+        borderTopWidth: 2,
+        fontWeight: "900",
     }
 })

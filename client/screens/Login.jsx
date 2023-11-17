@@ -1,7 +1,7 @@
 
 // !Packages
 import { useState } from 'react'
-import { Pressable, Text, View, ScrollView } from 'react-native'
+import { Pressable, Text, View, ScrollView, ActivityIndicator, ImageBackground, SafeAreaView, Image } from 'react-native'
 
 // !Styles
 import { logReg } from '../styles/logReg'
@@ -25,6 +25,20 @@ export default function Login({ isLoading, loginHandler }) {
         }));
     }
 
+    if (isLoading) {
+        return (
+            <SafeAreaView style={[logReg.screen, logReg.loadingScreen]}>
+                <View style={[logReg.screen, logReg.loadingScreen, { width: "100%", position: "relative" }]}>
+                    <View style={logReg.loadingContainer}>
+                        <Text style={logReg.loadingText}>Authenticating...</Text>
+                        <ActivityIndicator size={'large'} color={"white"} style={{ marginTop: 30 }} />
+                    </View>
+                    <Image style={[logReg.screen, logReg.loadingGif]} source={require('../assets/loadingGif.gif')} />
+                </View>
+            </SafeAreaView>
+        )
+    }
+
     return (
         <AppWrapper>
             <ScrollView
@@ -32,12 +46,13 @@ export default function Login({ isLoading, loginHandler }) {
                     alignItems: "center"
                 }}
                 style={[logReg.formContainerScroll, { marginTop: 20 }]}>
-                {isLoading && <Text style={{ color: "white", marginBottom: -20 }}>...Loading</Text>}
                 <Text style={logReg.title}>Login</Text>
                 <View style={[logReg.main, logReg.mainBackground]}>
                     <View style={[logReg.form, { marginTop: -10 }]}>
                         <InputGroup
                             label={"Email Address:"}
+                            optionalLabelStyles={logReg.label}
+                            optionalInputStyles={logReg.input}
                             inputConfig={{
                                 placeholder: "user123@gmail.com",
                                 secureTextEntry: false,
@@ -46,6 +61,8 @@ export default function Login({ isLoading, loginHandler }) {
                         />
                         <InputGroup
                             label={"Password:"}
+                            optionalLabelStyles={[logReg.label, { marginTop: 0 }]}
+                            optionalInputStyles={logReg.input}
                             inputConfig={{
                                 placeholder: "**********",
                                 secureTextEntry: true,
@@ -62,7 +79,7 @@ export default function Login({ isLoading, loginHandler }) {
                     </View>
                     <RedirectButton
                         redirectUrl={"Register"}
-                        textStyles={logReg.noAccount}
+                        textStyles={[logReg.noAccount, { fontSize: 20 }]}
                         viewStyles={logReg.noAccountContainer}
                         pressableStyles={logReg.noAccountButton}>
                         Don't have an account? Register!

@@ -7,6 +7,30 @@ export const logReg = StyleSheet.create({
         flex: 1,
         backgroundColor: "#0d47a1"
     },
+    loadingText: {
+        color: "white",
+        marginBottom: -20,
+        fontSize: 35
+    },
+    loadingScreen: {
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#000041"
+    },
+    loadingContainer: {
+        position: "absolute",
+        top: "10%",
+        left: "auto",
+        zIndex: 100,
+        opacity: 0.9,
+        padding: 20,
+        borderRadius: "20%",
+        backgroundColor: "#000041"
+    },
+    loadingGif: {
+        width: "100%",
+        borderRadius: 20
+    },
     formContainer: {
         flex: 0.6,
         borderRadius: 20,
@@ -74,7 +98,8 @@ export const logReg = StyleSheet.create({
     },
     label: {
         color: "white",
-        fontSize: 15
+        fontSize: 20,
+        marginTop: 40
     },
     input: {
         borderWidth: 2,
@@ -82,7 +107,7 @@ export const logReg = StyleSheet.create({
         elevation: 4,
         shadowColor: "black",
         backgroundColor: "#ccc",
-        padding: 10,
+        padding: 15,
         borderRadius: 10
     },
     button: {
@@ -95,7 +120,7 @@ export const logReg = StyleSheet.create({
         shadowColor: "black"
     },
     buttonText: {
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: "700",
         textAlign: "center"
     },

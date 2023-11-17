@@ -1,28 +1,36 @@
 
 // !Packages
-import { createStackNavigator } from '@react-navigation/stack'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import {
     useRegisterMutation,
     useLoginMutation
 } from '../../redux/api/auth/authApiSlice'
-import { useDispatch } from 'react-redux'
+import { Pressable, View, Text } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { showLoad } from '../../utils/functions/showLoad'
+import { authAndLogin } from '../../redux/reducer/authSlice'
+import { createStackNavigator } from '@react-navigation/stack'
 
 // !Components
 import Login from '../../screens/Login'
 import Register from '../../screens/Register'
-import { authAndLogin } from '../../redux/reducer/authSlice'
 
 // !Routing
 const Stack = createStackNavigator()
 
 export default function UnAuthenticatedHome() {
 
-    const [login, { isLoading: isLoginLoading }] = useLoginMutation()
-    const [register, { isLoading: isRegisterLoading }] = useRegisterMutation()
     const dispatch = useDispatch()
+    const [login] = useLoginMutation()
+    const [register] = useRegisterMutation()
+    const [isError, setIsError] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const navigation = useNavigation()
 
-    const loginHandler = ({ email, password }) => {
+    const loginHandler = async ({ email, password }) => {
         const payload = { email, password }
+        await showLoad(setIsLoading, 2000)
         login(payload)
             .unwrap()
             .then((res) => {
@@ -39,11 +47,14 @@ export default function UnAuthenticatedHome() {
             })
             .catch((err) => {
                 console.log("Error: ", err)
+                setIsLoading(false)
+                setIsError(true)
             })
     }
 
-    const registrationHandler = ({ firstName, lastName, email, password, confirmPassword }) => {
+    const registrationHandler = async({ firstName, lastName, email, password, confirmPassword }) => {
         const payload = { firstName, lastName, email, password, confirmPassword }
+        await showLoad(setIsLoading, 3000)
         register(payload)
             .unwrap()
             .then((res) => {
@@ -60,7 +71,22 @@ export default function UnAuthenticatedHome() {
             })
             .catch((err) => {
                 console.log("Error: ", err)
+                setIsLoading(false)
+                setIsError(true)
             })
+    }
+
+    if(isError){
+        return(
+            <View style={{flex: 1, justifyContent: "center", alignItems: "stretch", backgroundColor :"#000041"}}>
+                <Text style={{textAlign: "center", fontSize: 20, color: "white", width: "80%", marginLeft: "10%"}}>Something went wrong with authenticating your account.</Text>
+                <Pressable onPress={() => setIsError(false)}>
+                    <View>
+                <Text style={{textAlign: "center", fontSize: 25, color: "white", marginTop: 20}}>Please {"\n"}<Text style={{color: "gold"}}>Try Again</Text></Text>
+                    </View>
+                </Pressable>
+            </View>
+        )
     }
 
     return (
@@ -75,7 +101,7 @@ export default function UnAuthenticatedHome() {
                 {(props) => (
                     <Login
                         {...props}
-                        isLoading={isLoginLoading}
+                        isLoading={isLoading}
                         loginHandler={loginHandler}
                     />
                 )}
@@ -89,7 +115,7 @@ export default function UnAuthenticatedHome() {
                 {(props) => (
                     <Register
                         {...props}
-                        isLoading={isRegisterLoading}
+                        isLoading={isLoading}
                         registrationHandler={registrationHandler}
                     />
                 )}

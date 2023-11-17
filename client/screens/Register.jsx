@@ -1,7 +1,7 @@
 
 // !Packages
 import { useState, useEffect } from 'react'
-import { Pressable, Text, View, Keyboard, ScrollView } from 'react-native'
+import { Pressable, Text, View, Keyboard, ScrollView, SafeAreaView, ActivityIndicator, Image } from 'react-native'
 
 // !Styles
 import { logReg } from '../styles/logReg'
@@ -50,6 +50,20 @@ export default function Register({ isLoading, registrationHandler }) {
         }));
     }
 
+    if (isLoading) {
+        return (
+            <SafeAreaView style={[logReg.screen, logReg.loadingScreen]}>
+                <View style={[logReg.screen, logReg.loadingScreen, { width: "100%", position: "relative" }]}>
+                    <View style={logReg.loadingContainer}>
+                        <Text style={logReg.loadingText}>Takeoff..in: 3, 2, 1 🚀</Text>
+                        <ActivityIndicator size={'large'} color={"white"} style={{ marginTop: 30 }} />
+                    </View>
+                    <Image style={[logReg.screen, logReg.loadingGif]} source={require('../assets/loadingGif.gif')} />
+                </View>
+            </SafeAreaView>
+        )
+    }
+
     return (
         <AppWrapper>
             <ScrollView
@@ -62,7 +76,6 @@ export default function Register({ isLoading, registrationHandler }) {
                         ? { marginVertical: 10 }
                         : { marginTop: 50 }
                 ]}>
-                {isLoading && <Text style={{ color: "white", marginBottom: -20 }}>...Loading</Text>}
                 {!isKeyboardVisible && <Text style={logReg.title}>Register</Text>}
                 <View style={[logReg.main, logReg.mainBackground]}>
                     <View style={[logReg.form, { marginTop: -10 }]}>

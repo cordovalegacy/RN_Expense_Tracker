@@ -9,7 +9,7 @@ export default function RedirectButton({ children, redirectUrl, viewStyles, pres
 
     return (
         <Pressable
-            onPress={() => navigation.navigate(redirectUrl)}
+            onPress={() => navigation.replace(redirectUrl)}
             style={
                 ({ pressed }) => pressed
                     ? [pressableStyles, { opacity: 0.75 }]
