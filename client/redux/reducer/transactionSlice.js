@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+//may go with a different state management system
 const transactionSlice = createSlice({
     name: "transaction",
     initialState: null,
