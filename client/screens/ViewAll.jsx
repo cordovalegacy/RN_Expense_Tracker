@@ -1,9 +1,10 @@
 
 // !Packages
-import { useEffect, useState, useCallback } from 'react'
 import { Calendar } from 'react-native-calendars'
+import { useNavigation } from '@react-navigation/native'
+import { useEffect, useState, useCallback } from 'react'
 import { cleanData } from '../utils/functions/cleanData'
-import { SafeAreaView, Text, View, ScrollView, RefreshControl } from "react-native"
+import { SafeAreaView, Text, View, ScrollView, RefreshControl, Pressable } from "react-native"
 import { useRetrieveAllUsersTransactionsMutation } from '../redux/api/transaction/transactionApiSlice'
 
 // !Components
@@ -14,12 +15,20 @@ import { viewAll } from "../styles/viewAll"
 
 export default function ViewAll({ transaction, loggedInUser }) {
 
+  const navigation = useNavigation()
+
   const [retrieve, { isLoading }] = useRetrieveAllUsersTransactionsMutation()
 
   const [allTransactions, setAllTransactions] = useState({
     allIncomeRecords: [],
     allExpenseRecords: []
   })
+
+  const viewOne = (url, params) => {
+    navigation.navigate(url, {
+      params
+    })
+  }
 
   const [refreshing, setRefreshing] = useState(false)
   const onRefresh = useCallback(() => {
@@ -134,16 +143,18 @@ export default function ViewAll({ transaction, loggedInUser }) {
           </View>
           <View>
             {allTransactions.allIncomeRecords.slice(1).map((item) => (
-              <View style={viewAll.mainContentBackground} key={item?.id + Math.random(10000)}>
-                <Text style={viewAll.mainContent}>{item?.name}</Text>
-                <Text
-                  style={[
-                    viewAll.mainContent,
-                    { color: "green" }
-                  ]}>
-                  ${item?.amount}
-                </Text>
-              </View>
+              <Pressable style={viewAll.screen} onPress={() => viewOne("ViewOne", item)}>
+                <View style={viewAll.mainContentBackground} key={item?.id + Math.random(10000)}>
+                  <Text style={viewAll.mainContent}>{item?.name}</Text>
+                  <Text
+                    style={[
+                      viewAll.mainContent,
+                      { color: "green" }
+                    ]}>
+                    ${item?.amount}
+                  </Text>
+                </View>
+              </Pressable>
             ))}
           </View>
           <View
